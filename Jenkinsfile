@@ -7,9 +7,9 @@ pipeline {
 
     stages {
 
-        stage('CHECKOUT') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/SinchanaNagendra/c2.git'
+                git branch: 'main', url: 'https://github.com/SinchanaNagendra/c2.git'
             }
         }
 
