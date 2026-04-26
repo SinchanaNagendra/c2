@@ -9,24 +9,29 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/SinchanaNagendra/c2.git'
+                checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                dir('demo') {
-                    bat 'mvn clean install'
-                }
+                bat 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                dir('demo') {
-                    bat 'mvn test'
-                }
+                bat 'mvn test'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build Successful!'
+        }
+        failure {
+            echo 'Build Failed!'
         }
     }
 }
